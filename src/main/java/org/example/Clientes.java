@@ -8,15 +8,28 @@ public class Clientes {
     private String nome;
     private String cpf;
 
+    private String telefone;
+
+
+
     private List<Enderecos> enderecos = new ArrayList<>();
 
     public Clientes() {
     }
 
-    public Clientes(String nome, String cpf, List<Enderecos> enderecos) {
+    public Clientes(String nome, String cpf, String telefone, List<Enderecos> enderecos) {
         this.nome = nome;
         this.cpf = cpf;
         this.enderecos = enderecos;
+        this.telefone = telefone;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getNome() {
