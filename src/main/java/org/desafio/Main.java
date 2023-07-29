@@ -1,6 +1,5 @@
-package org.example;
+package org.desafio;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -88,7 +87,7 @@ public class Main {
                 case 2:
                     for (int i = 0; i < clientes.size(); i++){
 
-                        System.out.println("| ============================= |");
+                        System.out.println("| =========== Clientes ============= |");
                         System.out.println("| Nome: "+ clientes.get(i).getNome() + " | ");
                         System.out.println("| CPF: "+ clientes.get(i).getCpf() + " | ");
                         System.out.println("| Telefone: "+ clientes.get(i).getTelefone() + " | ");
