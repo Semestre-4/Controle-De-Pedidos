@@ -1,66 +1,40 @@
 package org.desafio;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
 
-        ControleClientes controle = new ControleClientes();
+    public static void main(String[] args) {
+
+        ControleClientes controleClientes = new ControleClientes();
+        ControlePedidos controlePedidos = new ControlePedidos();
+
+        Scanner scanner = new Scanner(System.in);
+
         int escolha;
-        Scanner s = new Scanner(System.in);
+        do {
+            // Exibe o menu principal
+            exibirMenu();
+            escolha = scanner.nextInt();
 
-        List<Clientes> clientes = new ArrayList<>();
-
-
-
-        do{
-
-            String nome;
-            String cpf;
-            String telefone;
-
-
-            String rua;
-            int numero;
-            String complemento;
-            int verificaComplemento;
-
-            System.out.println("\n| ============================= |");
-            System.out.println("| ==== Cadastro de Cliente ==== | ");
-            System.out.println("| ============================= |");
-            System.out.println("|                               |");
-            System.out.println("| ===== Digite uma opção ====== |");
-            System.out.println("| ===== 1: Cadastrar Novo ===== |");
-            System.out.println("| ==== 2: Listar Clientes ===== |");
-            System.out.println("| ==== 3: Procurar Cliente ==== |");
-            System.out.println("| ========= 0: Voltar ========= |");
-            escolha = s.nextInt();
-
-            switch (escolha){
-
-
-                case 1:
-
-                    controle.cadastrarNovoCliente();
-                    break;
-
-                case 2:
-
-                    controle.listarClientes();
-                    break;
-
-                case 3:
-                    controle.procurarCliente();
-                    break;
-
-                default:
-                    System.out.println("| ===== Opção invalida! ===== |");
-                break;
+            switch (escolha) {
+                case 1 -> controleClientes.start(); // Executa o controle de clientes
+                case 2 -> controlePedidos.start(); // Executa o controle de pedidos
+                case 0 -> System.out.println("Saindo do programa...");
+                default -> System.out.println("Opção inválida. Por favor, tente novamente.");
             }
+        } while (escolha != 0);
 
-        }while(escolha != 0);
+        scanner.close();
+    }
 
+    // Método para exibir o menu principal
+    private static void exibirMenu() {
+        System.out.println("====== Menu Principal ======");
+        System.out.println("1. Controle de Clientes");
+        System.out.println("2. Controle de Pedidos");
+        System.out.println("0. Sair");
+        System.out.println("=================================");
+        System.out.print("Digite a opção desejada: ");
     }
 }
