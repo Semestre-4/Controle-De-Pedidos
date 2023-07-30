@@ -139,7 +139,6 @@ public class ControleClientes {
                         System.out.println("| ============================= |");}
 
 
-
                 do {
 
                     System.out.println("| ======================================= |");
