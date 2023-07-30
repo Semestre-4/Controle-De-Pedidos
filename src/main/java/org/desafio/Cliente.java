@@ -3,25 +3,29 @@ package org.desafio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Clientes {
-
+public class Cliente {
     private String nome;
     private String cpf;
-
     private String telefone;
+    private List<Endereco> enderecos = new ArrayList<>();
 
+    private List<Pedido> pedidos;
 
-
-    private List<Enderecos> enderecos = new ArrayList<>();
-
-    public Clientes() {
+    public Cliente() {
     }
 
-    public Clientes(String nome, String cpf, String telefone, List<Enderecos> enderecos) {
+    public Cliente(String nome, String cpf, String telefone, List<Endereco> enderecos) {
         this.nome = nome;
         this.cpf = cpf;
         this.enderecos = enderecos;
         this.telefone = telefone;
+    }
+
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+
+    public Cliente(String nome, String cpf, String telefone, Endereco endereco) {
     }
 
     public String getTelefone() {
@@ -48,11 +52,23 @@ public class Clientes {
         this.cpf = cpf;
     }
 
-    public List<Enderecos> getEnderecos() {
+    public List<Endereco> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(List<Enderecos> enderecos) {
+    public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    static boolean isValidCPF(String cpf) {
+        return cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}");
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

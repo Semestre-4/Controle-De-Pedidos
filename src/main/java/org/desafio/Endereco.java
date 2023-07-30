@@ -1,22 +1,22 @@
 package org.desafio;
 
-public class Enderecos {
+public class Endereco {
 
     private String rua;
     private int numero;
 
     private String complemento;
 
-    public Enderecos() {
+    public Endereco() {
     }
 
-    public Enderecos(String rua, int numero, String complemento) {
+    public Endereco(String rua, int numero, String complemento) {
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
     }
 
-    public Enderecos(String rua, int numero) {
+    public Endereco(String rua, int numero) {
         this.rua = rua;
         this.numero = numero;
     }
