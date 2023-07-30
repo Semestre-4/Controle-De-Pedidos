@@ -1,26 +1,38 @@
 package org.desafio;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ControlePedidos {
 
-    private List<Pedidos> pedidos = new ArrayList<>();
-    
+    private ControleClientes controleClientes;
+    private List<Pedido> pedidos = new ArrayList<>();
+
     private Scanner scanner;
 
-    public ControlePedidos() {
-        pedidos = new ArrayList<>();
+    public ControlePedidos(ControleClientes controleClientes) {
+        this.controleClientes = controleClientes;
+        this.pedidos = new ArrayList<>();
         scanner = new Scanner(System.in);
     }
 
-    public List<Pedidos> getPedidos() {
+    public ControlePedidos() {
+    }
+
+    public ControleClientes getControleClientes() {
+        return controleClientes;
+    }
+
+    public void setControleClientes(ControleClientes controleClientes) {
+        this.controleClientes = controleClientes;
+    }
+
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(List<Pedidos> pedidos) {
+    public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 
@@ -32,40 +44,12 @@ public class ControlePedidos {
         this.scanner = scanner;
     }
 
-    public void start() {
-        int option;
+    public void start(){
 
-        do {
-            option = printMenuOptions();
-
-            switch (option) {
-                case 1 -> realizarPedido();
-                case 2 -> imprimirQuantidadePedidos();
-                case 3 -> imprimirPedidosEncerrados();
-                case 4 -> imprimirPedidosConcluidos();
-                case 0 -> {
-                    System.out.println("Saindo do programa...");
-                    return;
-                }
-                default -> System.out.println("Opção inválida. Por favor, tente novamente.");
-            }
-
-        } while (true);
-    }
-
-    private void imprimirPedidosConcluidos() {
-    }
-
-    private void imprimirPedidosEncerrados() {
-    }
-
-    private void imprimirQuantidadePedidos() {
-    }
-
-    private void realizarPedido() {
     }
 
     private int printMenuOptions() {
+        System.out.println();
         System.out.println("========== Menu Pedidos ==========");
         System.out.println("1. Realizar Pedido");
         System.out.println("2. Imprimir Quantidade de Pedidos");
@@ -74,8 +58,20 @@ public class ControlePedidos {
         System.out.println("0. Voltar ao Menu Principal");
         System.out.println("=================================");
         System.out.print("Digite a opção desejada: ");
+        System.out.println();
         return scanner.nextInt();
     }
+
+    public boolean realizarPedido(){
+        return true;
+    }
+
+    public void imprimirQuantidadePedidos(){}
+
+    public void imprimirPedidosEncerrados() {}
+
+    private void imprimirPedidosConcluidos() {}
+
 
 
 }
