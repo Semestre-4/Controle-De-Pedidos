@@ -12,7 +12,7 @@ public class Pedido {
     private Cliente cliente;
     private List<Produto> produtos;
     private boolean encerrado;
-    private boolean concluido;
+    private boolean emAdamento;
 
     public Pedido() {
         this.numeroPedido = proximoNumeroPedido;
@@ -57,12 +57,12 @@ public class Pedido {
         this.encerrado = encerrado;
     }
 
-    public boolean isConcluido() {
-        return concluido;
+    public boolean isEmAdamento() {
+        return emAdamento;
     }
 
-    public void setConcluido(boolean concluido) {
-        this.concluido = concluido;
+    public void setEmAndamento(boolean concluido) {
+        this.emAdamento = concluido;
     }
 
     public LocalDate getDataPedido() {
@@ -99,7 +99,7 @@ public class Pedido {
         }
         System.out.println("Valor Total: R$" + calcularValorTotal());
         System.out.println("Encerrado: " + encerrado);
-        System.out.println("Concluído: " + concluido);
+        System.out.println("Concluído: " + emAdamento);
         System.out.println("==============================");
     }
 }
