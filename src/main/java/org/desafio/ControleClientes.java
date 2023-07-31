@@ -171,8 +171,6 @@ public class ControleClientes {
         }
     }
 
-
-
     private List<Pedido> getPedidosDoCliente(Cliente cliente, List<Pedido> pedidos) {
         return pedidos.stream()
                 .filter(pedido -> pedido.getCliente().equals(cliente))

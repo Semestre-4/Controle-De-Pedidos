@@ -44,7 +44,7 @@ public class ControlePedidos {
                 case 1 -> realizarPedido();
                 case 2 -> imprimirQuantidadePedidos();
                 case 3 -> imprimirPedidosEncerrados();
-                case 4 -> imprimirPedidosConcluidos();
+                case 4 -> imprimirPedidosEmAndamento();
                 case 0 -> {
                     System.out.println("Voltando ao Menu Principal.");
                     return;
@@ -213,9 +213,8 @@ public class ControlePedidos {
         String resposta = scanner.next();
         if (resposta.equalsIgnoreCase("S")) {
             pedido.calcularValorTotal();
+            pedido.setEmAndamento(true);
             pedido.exibirDetalhes();
-            pedido.setEncerrado(true);
-            pedido.setConcluido(true);
             System.out.println("Pedido finalizado e concluído com sucesso.");
         } else {
             System.out.println("Pedido não finalizado.");
@@ -236,11 +235,11 @@ public class ControlePedidos {
         }
     }
 
-    public void imprimirPedidosConcluidos() {
+    public void imprimirPedidosEmAndamento() {
         System.out.println();
         System.out.println("===== Pedidos Concluídos =====");
         for (Pedido pedido : pedidos) {
-            if (pedido.isConcluido()) {
+            if (pedido.isEmAdamento()) {
                 displayPedido(pedido);
             }
         }
