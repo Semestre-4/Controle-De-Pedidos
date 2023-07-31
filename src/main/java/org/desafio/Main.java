@@ -9,6 +9,9 @@ public class Main {
         ControleClientes controleClientes = new ControleClientes();
         ControlePedidos controlePedidos = new ControlePedidos(controleClientes);
 
+        controleClientes.setControlePedidos(controlePedidos);
+        controlePedidos.setControleClientes(controleClientes);
+
         Scanner scanner = new Scanner(System.in);
 
         int escolha;
@@ -20,7 +23,7 @@ public class Main {
             switch (escolha) {
                 case 1 -> controleClientes.start(); // Executa o controle de clientes
                 case 2 -> controlePedidos.start(); // Executa o controle de pedidos
-                case 0 -> System.out.println("Saindo do programa...");
+                case 0 -> System.out.println("Saindo do11 programa...");
                 default -> System.out.println("Opção inválida. Por favor, tente novamente.");
             }
         } while (escolha != 0);

@@ -21,6 +21,13 @@ public class Cliente {
         this.telefone = telefone;
     }
 
+    public void addPedido(Pedido pedido) {
+        if (pedidos == null) {
+            pedidos = new ArrayList<>();
+        }
+        pedidos.add(pedido);
+    }
+
     public Cliente(String nome) {
         this.nome = nome;
     }
