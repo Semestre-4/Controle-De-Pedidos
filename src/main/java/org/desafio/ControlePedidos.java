@@ -105,7 +105,7 @@ public class ControlePedidos {
                 controleClientes.miniListarCliente();
                 cliente = controleClientes.procurarCliente();
             } else if (opcaoCliente == 2) {
-                cliente = cadastrarNovoCliente(scanner);
+                cliente = controleClientes.cadastrarNovo();
                 if (cliente == null) {
                     System.out.println("Cadastro cancelado.");
                 } else if (controleClientes.existeCliente(cliente.getCpf())) {
@@ -117,60 +117,6 @@ public class ControlePedidos {
         return cliente;
     }
 
-
-    private Cliente cadastrarNovoCliente(Scanner scanner) {
-        Cliente cliente = new Cliente();
-        System.out.println("=================================");
-        System.out.println("\nDigite o nome (ou digite 0 para cancelar):");
-        String inputNome = scanner.nextLine().trim();
-
-        if (inputNome.equals("0")) {
-            System.out.println("Cadastro cancelado.");
-            return null;
-        }
-
-        cliente.setNome(inputNome);
-
-        while (true) {
-            System.out.printf("\nInsira o CPF de %s (no formato xxx.xxx.xxx-xx) (ou digite 0 para cancelar):%n",
-                    cliente.getNome());
-            String cpf = scanner.nextLine().trim();
-
-            if (cpf.equals("0")) {
-                System.out.println("Cadastro cancelado.");
-                return null;
-            }
-
-            if (Cliente.isValidCPF(cpf)) {
-                cliente.setCpf(cpf);
-                break;
-            } else {
-                System.out.println("CPF inválido. Por favor, insira um CPF válido.");
-            }
-        }
-
-        System.out.printf("\nPor favor, insira a quantidade de endereços a serem cadastrados para %s:%n",
-                cliente.getNome());
-        int numEnderecos = getValidInput(scanner, 1, Integer.MAX_VALUE);
-        List<Endereco> enderecos = new ArrayList<>();
-        for (int j = 0; j < numEnderecos; j++) {
-            Endereco endereco = new Endereco();
-            System.out.println("=================================");
-            System.out.println("\nInsira a rua do endereço:");
-            endereco.setRua(scanner.nextLine());
-
-            System.out.println("\nInsira o número da rua do endereço:");
-            int numero = getValidInput(scanner, 1, Integer.MAX_VALUE);
-            endereco.setNumero(numero);
-
-            System.out.println("\nInsira o Complemento do endereço:");
-            endereco.setComplemento(scanner.nextLine());
-            enderecos.add(endereco);
-        }
-        cliente.setEnderecos(enderecos);
-        System.out.println("Cliente cadastrado com sucesso.");
-        return cliente;
-    }
 
     private int getValidInput(Scanner scanner, int min, int max) {
         int input;
