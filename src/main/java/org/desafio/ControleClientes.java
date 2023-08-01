@@ -378,7 +378,6 @@ public class ControleClientes {
                 System.out.println("2. Editar Endereço");
                 System.out.println("0. Voltar");
                 System.out.println("=======================================");
-
                 System.out.print("Digite a opção desejada: ");
                 opcao = scanner.nextInt();
 
