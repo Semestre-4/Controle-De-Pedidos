@@ -1,5 +1,8 @@
 package org.desafio;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -60,7 +63,7 @@ public class ControlePedidos {
         System.out.println("========== Menu Pedidos ==========");
         System.out.println("1. Realizar Pedido");
         System.out.println("2. Imprimir Quantidade de Pedidos");
-        System.out.println("3. Imprimir Pedidos Encerrados");
+        System.out.println("3. Imprimir Pedidos Em Andamento");
         System.out.println("4. Imprimir Pedidos Concluídos");
         System.out.println("0. Voltar ao Menu Principal");
         System.out.println("=================================");
@@ -87,7 +90,9 @@ public class ControlePedidos {
         }
 
         pedidos.add(pedido);
-        System.out.println("Pedido realizado com sucesso.");
+        System.out.println("Pedido efetuado com sucesso.");
+        System.out.println("Comprovante de Pedido emetindo...");
+
     }
 
 
@@ -116,7 +121,6 @@ public class ControlePedidos {
         }
         return cliente;
     }
-
 
     private int getValidInput(Scanner scanner, int min, int max) {
         int input;
@@ -183,7 +187,7 @@ public class ControlePedidos {
         System.out.println("===== Pedidos Encerrados =====");
         for (Pedido pedido : pedidos) {
             if (pedido.isEncerrado()) {
-                displayPedido(pedido);
+                pedido.exibirDetalhes();
             }
         }
     }
@@ -193,19 +197,9 @@ public class ControlePedidos {
         System.out.println("===== Pedidos Concluídos =====");
         for (Pedido pedido : pedidos) {
             if (pedido.isEmAdamento()) {
-                displayPedido(pedido);
+                pedido.exibirDetalhes();
             }
         }
     }
 
-    private void displayPedido(Pedido pedido) {
-        System.out.println("Pedido Número: " + pedido.getNumeroPedido());
-        System.out.println("Data do Pedido: " + pedido.getDataPedido().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        System.out.println("Nome do Cliente: " + pedido.getCliente().getNome());
-        for (Produto produto : pedido.getProdutos()) {
-            System.out.printf("%s - %.2f%n", produto.getNome(), produto.getPreco());
-        }
-        System.out.printf("Total Pago: %.2f%n", pedido.calcularValorTotal());
-        System.out.println("==============================");
-    }
 }

@@ -98,7 +98,7 @@ public class Pedido {
             System.out.println("- " + produto.getNome() + " | Preço: R$" + produto.getPreco());
         }
         System.out.println("Valor Total: R$" + calcularValorTotal());
-        System.out.println("Encerrado: " + encerrado);
+        System.out.println("Em Andamento: " + encerrado);
         System.out.println("Concluído: " + emAdamento);
         System.out.println("==============================");
     }
