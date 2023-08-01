@@ -15,3 +15,13 @@ O Controle de Pedidos é um sistema de gerenciamento de clientes e pedidos desen
 - **Vinculação de Pedidos:** Permite associar um ou mais pedidos a um cliente, criando uma relação entre as informações de venda e o cliente que realizou a compra.
 
 - **Geração de Arquivos de Entrega:** Ao encerrar um pedido, o sistema gera um arquivo de texto (txt) contendo as informações do cliente e endereço para entrega. Esse arquivo pode ser utilizado para facilitar a logística de envio dos produtos ou serviços ao cliente.
+
+## Output
+![image](https://github.com/Semestre-4/Controle-De-Pedidos/assets/97567643/ac5b8563-aa65-4f04-a6cc-0e15a78acedb)
+![image](https://github.com/Semestre-4/Controle-De-Pedidos/assets/97567643/64c6b014-d631-4a1d-b1f1-af2237ab4e6a)
+![image](https://github.com/Semestre-4/Controle-De-Pedidos/assets/97567643/151cc912-e07c-47e5-84a0-34e1148d0500)
+
+
+
+
+
