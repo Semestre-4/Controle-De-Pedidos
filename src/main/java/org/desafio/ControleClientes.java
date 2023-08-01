@@ -373,12 +373,13 @@ public class ControleClientes {
 
             do {
 
-                System.out.println("| ======================================= |");
-                System.out.println("| =============    Opções    ============ |");
-                System.out.println("| ========== 1: Editar  Cliente ========= |");
-                System.out.println("| ========== 2: Editar Endereço ========= |");
-                System.out.println("| ===========     0: Voltar    ========== |");
-                System.out.println("| ======================================= |");
+                System.out.println("=============    Opções    ============");
+                System.out.println("1. Editar Cliente");
+                System.out.println("2. Editar Endereço");
+                System.out.println("0. Voltar");
+                System.out.println("=======================================");
+
+                System.out.print("Digite a opção desejada: ");
                 opcao = scanner.nextInt();
 
                 if (opcao == 1){
@@ -402,33 +403,58 @@ public class ControleClientes {
 
 
     private void editarDadosCliente( int i) {
+        String valida = "";
+        String newcpf, newtel;
 
-        System.out.println("\n|===== Digite o nome ===== |");
-        String newnome = scanner.next();
+        System.out.println("\n|===== Gostaria de editar o Nome? S/N ===== |");
+        valida = scanner.next();
+        if (valida.equalsIgnoreCase("S")) {
+            System.out.println("\n|===== Digite o nome ===== |");
+            String newnome = scanner.next();
+            clientes.get(i).setNome(newnome);
+        }
 
-        System.out.println("\n|===== Digite o CPF ===== |");
-        String newcpf = scanner.next();
+        System.out.println("\n|===== Gostaria de editar o CPF? S/N ===== |");
+        valida = scanner.next();
+        if (valida.equalsIgnoreCase("S")) {
 
-        System.out.println("\n|===== Digite o Telefone ===== |");
-        String newtel = scanner.next();
+            System.out.println("\n|===== Digite o CPF ===== |");
+            newcpf = scanner.next();
+            clientes.get(i).setCpf(newcpf);
+        }
 
-        clientes.get(i).setNome(newnome);
-        clientes.get(i).setCpf(newcpf);
-        clientes.get(i).setTelefone(newtel);
+
+        System.out.println("\n|===== Gostaria de editar o Telefone? S/N ===== |");
+        valida = scanner.next();
+        if (valida.equalsIgnoreCase("S")) {
+            System.out.println("\n|===== Digite o Telefone ===== |");
+            newtel = scanner.next();
+            clientes.get(i).setTelefone(newtel);
+        }
+
+
 
 
     }
 
     private void editarEndereco(int i) {
+        String valida;
+        String newcomp = "";
+
+
         System.out.println("\n|===== Digite a rua ===== |");
         String newrua = scanner.next();
 
         System.out.println("\n|===== Digite o número ===== |");
         int newnum = scanner.nextInt();
 
-        System.out.println("\n|===== Digite o complemento ===== |");
-        String newcomp = scanner.next();
+        System.out.println("\n|===== Gostaria de editar o complemento? S/N ===== |");
+        valida = scanner.next();
+        if (valida.equalsIgnoreCase("S")) {
 
+            System.out.println("\n|===== Digite o complemento ===== |");
+            newcomp = scanner.next();
+        }
         List<Endereco> newEndereco = new ArrayList<>();
         newEndereco.add(new Endereco(newrua, newnum, newcomp));
         clientes.get(i).setEnderecos(newEndereco);
