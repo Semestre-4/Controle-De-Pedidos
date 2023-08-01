@@ -1,5 +1,6 @@
 package org.desafio;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -92,7 +93,41 @@ public class ControlePedidos {
         pedidos.add(pedido);
         System.out.println("Pedido efetuado com sucesso.");
         System.out.println("Comprovante de Pedido emetindo...");
+        comprovante(pedido);
 
+    }
+
+
+    private void comprovante(Pedido pedido) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the file path: ");
+        String filePath = scanner.nextLine();
+        emitirComprovante(pedido, filePath);
+    }
+
+    private void emitirComprovante(Pedido pedido, String fileName) {
+        String currentDirectory = System.getProperty("user.dir");
+        String filePath = currentDirectory + File.separator + fileName;
+
+        try {
+            FileWriter fileWriter = new FileWriter(filePath);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            printWriter.println("Data do Pedido: " + pedido.getDataPedido());
+            printWriter.println("Cliente: " + pedido.getCliente().getNome());
+            printWriter.println("CPF do Cliente: " + pedido.getCliente().getCpf());
+            printWriter.println("======== Endereço De Entrega ========");
+            printWriter.println("Rua: " + pedido.getCliente().getEnderecos().get(0).getRua());
+            printWriter.println("Número: " + pedido.getCliente().getEnderecos().get(0).getNumero());
+            String complemento = pedido.getCliente().getEnderecos().get(0).getComplemento();
+            printWriter.println("Complemento: " + (complemento.isEmpty() ? "N/A" : complemento));
+            printWriter.println("Comprovante de Pedido emitido com sucesso em: " + filePath);
+            printWriter.close();
+            System.out.println("Comprovante de Pedido emitido com sucesso em: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error while writing the file:");
+            e.printStackTrace();
+        }
     }
 
 
