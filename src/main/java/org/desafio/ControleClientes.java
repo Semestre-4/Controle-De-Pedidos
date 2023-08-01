@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 public class ControleClientes {
 
     private List<Cliente> clientes = new ArrayList<>();
+
+    List<Endereco> enderecos = new ArrayList<>();
+
     private ControlePedidos controlePedidos;
     private Scanner scanner;
 
@@ -69,7 +72,7 @@ public class ControleClientes {
                 case 1 -> cadastrarNovo();
                 case 2 -> listarClientes();
                 case 3 -> procurarCliente();
-                case 4 -> controlePedidos.realizarPedido();
+                case 4 -> editarCliente();
                 case 0 -> {
                     System.out.println("Saindo do programa...");
                     return;
@@ -183,6 +186,7 @@ public class ControleClientes {
             System.out.println();
             System.out.println("Nome: " + cliente.getNome());
             System.out.println("CPF: " + cliente.getCpf());
+            System.out.println("Telefone: " + cliente.getTelefone());
 
             // List of Enderecos
             System.out.println();
@@ -249,11 +253,18 @@ public class ControleClientes {
             }
         }
 
+        System.out.println("=================================");
+        System.out.println("Digite o Telefone: ");
+        cliente.setTelefone( scanner.next());
+
+
+        System.out.println("=================================");
+        System.out.println("Digite a quantidade de endereços.");
+
         int numEnderecos = getValidInput(scanner, 1, Integer.MAX_VALUE);
         List<Endereco> enderecos = cadastrarEnderecos(numEnderecos);
 
         cliente.setEnderecos(enderecos);
-
         clientes.add(cliente);
 
         System.out.println("===============================");
@@ -308,6 +319,7 @@ public class ControleClientes {
         System.out.println("1. Cadastrar Novo Cliente");
         System.out.println("2. Listar Clientes");
         System.out.println("3. Buscar Cliente");
+        System.out.println("4. Editar Cliente");
         System.out.println("0. Voltar ao Menu Principal");
         System.out.println("=================================");
         System.out.print("Digite a opção desejada: ");
@@ -323,6 +335,99 @@ public class ControleClientes {
     public void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
+
+    public void editarCliente(){
+    String busca;
+
+
+        System.out.println("\n|===== Digite o CPF ===== |");
+        busca = scanner.next();
+
+        for (int i = 0; i < clientes.size(); i++){
+        int opcao;
+
+
+
+        if (clientes.get(i).getCpf().equals(busca)){
+
+            System.out.println("| ============================= |");
+            System.out.println("| Nome: "+ clientes.get(i).getNome() + " | ");
+            System.out.println("| CPF: "+ clientes.get(i).getCpf() + " | ");
+            System.out.println("| Telefone: "+ clientes.get(i).getTelefone() + " | ");
+            System.out.println("| ============================= |");
+
+            System.out.println("| ========== Endereço ========= |");
+            for (int x = 0; x < clientes.get(i).getEnderecos().size(); x++){
+                System.out.println("| Rua: "+ clientes.get(i).getEnderecos().get(x).getRua()+ " | ");
+                System.out.println("| Num: "+ clientes.get(i).getEnderecos().get(x).getNumero() + " | ");
+                System.out.println("| Complemento: "+ clientes.get(i).getEnderecos().get(x).getComplemento() + " | ");
+                System.out.println("| ============================= |");}
+
+
+            do {
+
+                System.out.println("| ======================================= |");
+                System.out.println("| =============    Opções    ============ |");
+                System.out.println("| ========== 1: Editar  Cliente ========= |");
+                System.out.println("| ========== 2: Editar Endereço ========= |");
+                System.out.println("| ===========     0: Voltar    ========== |");
+                System.out.println("| ======================================= |");
+                opcao = scanner.nextInt();
+
+                if (opcao == 1){
+
+                    editarDadosCliente(i);
+
+                }
+                if (opcao == 2){
+
+                    editarEndereco(i);
+
+                }
+            }while (opcao != 0);
+
+        }else{
+            System.out.println("| ======== Não encotrado! ======== |");
+        }
+    }}
+
+
+
+
+    private void editarDadosCliente( int i) {
+
+        System.out.println("\n|===== Digite o nome ===== |");
+        String newnome = scanner.next();
+
+        System.out.println("\n|===== Digite o CPF ===== |");
+        String newcpf = scanner.next();
+
+        System.out.println("\n|===== Digite o Telefone ===== |");
+        String newtel = scanner.next();
+
+        clientes.get(i).setNome(newnome);
+        clientes.get(i).setCpf(newcpf);
+        clientes.get(i).setTelefone(newtel);
+
+
+    }
+
+    private void editarEndereco(int i) {
+        System.out.println("\n|===== Digite a rua ===== |");
+        String newrua = scanner.next();
+
+        System.out.println("\n|===== Digite o número ===== |");
+        int newnum = scanner.nextInt();
+
+        System.out.println("\n|===== Digite o complemento ===== |");
+        String newcomp = scanner.next();
+
+        List<Endereco> newEndereco = new ArrayList<>();
+        newEndereco.add(new Endereco(newrua, newnum, newcomp));
+        clientes.get(i).setEnderecos(newEndereco);
+
+    }
+
 
 
 
