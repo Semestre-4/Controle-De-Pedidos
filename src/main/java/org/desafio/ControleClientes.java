@@ -120,7 +120,7 @@ public class ControleClientes {
      * @param cpf The CPF to search for.
      * @return The found Cliente or null if not found.
      */
-    private Cliente findClienteByCpf(String cpf) {
+    public Cliente findClienteByCpf(String cpf) {
         return clientes.stream()
                 .filter(cliente -> cliente.getCpf().equals(cpf))
                 .findFirst()
@@ -332,9 +332,16 @@ public class ControleClientes {
         return option;
     }
 
-    public void adicionarCliente(Cliente cliente) {
-        clientes.add(cliente);
+    public boolean existeCliente(String cpf) {
+        return clientes.stream().anyMatch(cliente -> cliente.getCpf().equals(cpf));
     }
+
+    public void adicionarCliente(Cliente cliente) {
+        if (!existeCliente(cliente.getCpf())) {
+            clientes.add(cliente);
+        }
+    }
+
 
     public void editarCliente(){
     String busca;
@@ -427,8 +434,6 @@ public class ControleClientes {
         clientes.get(i).setEnderecos(newEndereco);
 
     }
-
-
 
 
 }

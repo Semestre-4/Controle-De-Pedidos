@@ -81,9 +81,12 @@ public class ControlePedidos {
         adicionarProdutosAoPedido(pedido);
         finalizarPedido(pedido);
 
+        if (controleClientes.findClienteByCpf(cliente.getCpf()) != null) {
+            controleClientes.adicionarCliente(cliente);
+            cliente.addPedido(pedido);
+        }
+
         pedidos.add(pedido);
-        controleClientes.adicionarCliente(cliente); // Add the client to the list in ControleClientes
-        cliente.addPedido(pedido); // Update the client's order list
         System.out.println("Pedido realizado com sucesso.");
     }
 
@@ -105,11 +108,15 @@ public class ControlePedidos {
                 cliente = cadastrarNovoCliente(scanner);
                 if (cliente == null) {
                     System.out.println("Cadastro cancelado.");
+                } else if (controleClientes.existeCliente(cliente.getCpf())) {
+                    System.out.println("Cliente já cadastrado. Vinculando ao cliente existente.");
+                    cliente = controleClientes.findClienteByCpf(cliente.getCpf());
                 }
             }
         }
         return cliente;
     }
+
 
     private Cliente cadastrarNovoCliente(Scanner scanner) {
         Cliente cliente = new Cliente();
